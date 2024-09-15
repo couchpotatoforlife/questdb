@@ -1,6 +1,5 @@
-package com.example.sender;
-
 import io.questdb.client.Sender;
+import io.questdb.client.SenderException;
 
 public class AuthTlsExample {
     public static void main(String[] args) {
@@ -17,6 +16,9 @@ public class AuthTlsExample {
                     .doubleColumn("price", 39269.98)
                     .doubleColumn("amount", 0.001)
                     .atNow();
+        } catch (SenderException e) {
+            System.err.println("Error sending data to QuestDB: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
